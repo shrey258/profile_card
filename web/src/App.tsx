@@ -10,8 +10,10 @@ function App() {
 
   return (
     <div
+      onClick={expanded ? () => setExpanded(false) : undefined}
       style={{
-        minHeight: "100vh",
+        position: "fixed",
+        inset: 0,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -20,18 +22,7 @@ function App() {
       }}
     >
       <AnimatePresence>
-      {expanded ? (
-        <div
-          onClick={() => setExpanded(false)}
-          style={{
-            position: "fixed",
-            inset: 0,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            backgroundColor: "transparent",
-          }}
-        >
+        {expanded ? (
           <div onClick={(e) => e.stopPropagation()}>
             <ProfileCard
               name="Natasha Romanoff"
@@ -44,22 +35,21 @@ function App() {
               rating={4.5}
             />
           </div>
-        </div>
-      ) : (
-        <div style={{ cursor: "pointer" }} onClick={() => setExpanded(true)}>
-          <CompactProfileCard
-            name="Natasha Romanoff"
-            role="Brand Designer"
-            location="London"
-            bio="I'm a brand designer who blends sharp strategy with bold creativity to craft identities that leave lasting impressions."
-            imageUrl="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop"
-            projects={50}
-            earnings="$35k+"
-            rating={4.5}
-          />
-        </div>
-      )}
-    </AnimatePresence>
+        ) : (
+          <div style={{ cursor: "pointer" }} onClick={() => setExpanded(true)}>
+            <CompactProfileCard
+              name="Natasha Romanoff"
+              role="Brand Designer"
+              location="London"
+              bio="I'm a brand designer who blends sharp strategy with bold creativity to craft identities that leave lasting impressions."
+              imageUrl="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop"
+              projects={50}
+              earnings="$35k+"
+              rating={4.5}
+            />
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
