@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 interface ProfileCardProps {
   name: string;
   role: string;
@@ -9,8 +7,6 @@ interface ProfileCardProps {
   projects: number;
   earnings: string;
   rating: number;
-  onHireClick?: () => void;
-  onMessageClick?: () => void;
 }
 
 const StarIcon = ({ filled, half }: { filled: boolean; half?: boolean }) => (
@@ -68,12 +64,7 @@ export default function ProfileCard({
   projects,
   earnings,
   rating,
-  onHireClick,
-  onMessageClick,
 }: ProfileCardProps) {
-  const [isHireHovered, setIsHireHovered] = useState(false);
-  const [isMessageHovered, setIsMessageHovered] = useState(false);
-
   return (
     <div style={styles.card}>
       <div style={styles.imageContainer}>
@@ -106,28 +97,8 @@ export default function ProfileCard({
         </div>
 
         <div style={styles.buttons}>
-          <button
-            style={{
-              ...styles.hireButton,
-              ...(isHireHovered ? styles.hireButtonHover : {}),
-            }}
-            onClick={onHireClick}
-            onMouseEnter={() => setIsHireHovered(true)}
-            onMouseLeave={() => setIsHireHovered(false)}
-          >
-            Hire now
-          </button>
-          <button
-            style={{
-              ...styles.messageButton,
-              ...(isMessageHovered ? styles.messageButtonHover : {}),
-            }}
-            onClick={onMessageClick}
-            onMouseEnter={() => setIsMessageHovered(true)}
-            onMouseLeave={() => setIsMessageHovered(false)}
-          >
-            Message
-          </button>
+          <button style={styles.hireButton}>Hire now</button>
+          <button style={styles.messageButton}>Message</button>
         </div>
       </div>
     </div>
@@ -228,9 +199,6 @@ const styles: { [key: string]: React.CSSProperties } = {
     cursor: "pointer",
     transition: "background-color 0.2s ease",
   },
-  hireButtonHover: {
-    backgroundColor: "#333333",
-  },
   messageButton: {
     width: "100%",
     padding: "16px",
@@ -242,8 +210,5 @@ const styles: { [key: string]: React.CSSProperties } = {
     borderRadius: "50px",
     cursor: "pointer",
     transition: "background-color 0.2s ease",
-  },
-  messageButtonHover: {
-    backgroundColor: "#f5f5f5",
   },
 };

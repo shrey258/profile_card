@@ -24,8 +24,6 @@ function App() {
         projects={50}
         earnings="$35k+"
         rating={4.5}
-        onHireClick={() => alert("Hire clicked!")}
-        onMessageClick={() => alert("Message clicked!")}
       />
 
       <CompactProfileCard
@@ -37,8 +35,6 @@ function App() {
         projects={50}
         earnings="$35k+"
         rating={4.5}
-        onHireClick={() => alert("Hire clicked!")}
-        onMessageClick={() => alert("Message clicked!")}
       />
     </div>
   );

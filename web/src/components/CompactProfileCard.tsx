@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 interface CompactProfileCardProps {
   name: string;
   role: string;
@@ -9,8 +7,6 @@ interface CompactProfileCardProps {
   projects: number;
   earnings: string;
   rating: number;
-  onHireClick?: () => void;
-  onMessageClick?: () => void;
 }
 
 const StarIcon = ({ filled }: { filled: boolean }) => (
@@ -35,12 +31,7 @@ export default function CompactProfileCard({
   projects,
   earnings,
   rating,
-  onHireClick,
-  onMessageClick,
 }: CompactProfileCardProps) {
-  const [isHireHovered, setIsHireHovered] = useState(false);
-  const [isMessageHovered, setIsMessageHovered] = useState(false);
-
   return (
     <div style={styles.card}>
       <div style={styles.header}>
@@ -76,28 +67,8 @@ export default function CompactProfileCard({
       </div>
 
       <div style={styles.buttons}>
-        <button
-          style={{
-            ...styles.hireButton,
-            ...(isHireHovered ? styles.hireButtonHover : {}),
-          }}
-          onClick={onHireClick}
-          onMouseEnter={() => setIsHireHovered(true)}
-          onMouseLeave={() => setIsHireHovered(false)}
-        >
-          Hire now
-        </button>
-        <button
-          style={{
-            ...styles.messageButton,
-            ...(isMessageHovered ? styles.messageButtonHover : {}),
-          }}
-          onClick={onMessageClick}
-          onMouseEnter={() => setIsMessageHovered(true)}
-          onMouseLeave={() => setIsMessageHovered(false)}
-        >
-          Message
-        </button>
+        <button style={styles.hireButton}>Hire now</button>
+        <button style={styles.messageButton}>Message</button>
       </div>
     </div>
   );
@@ -115,6 +86,7 @@ const styles: { [key: string]: React.CSSProperties } = {
       '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
     boxSizing: "border-box",
   },
+
   header: {
     display: "flex",
     alignItems: "center",
@@ -201,9 +173,6 @@ const styles: { [key: string]: React.CSSProperties } = {
     cursor: "pointer",
     transition: "background-color 0.2s ease",
   },
-  hireButtonHover: {
-    backgroundColor: "#333333",
-  },
   messageButton: {
     flex: 1,
     padding: "16px",
@@ -215,8 +184,5 @@ const styles: { [key: string]: React.CSSProperties } = {
     borderRadius: "12px",
     cursor: "pointer",
     transition: "background-color 0.2s ease",
-  },
-  messageButtonHover: {
-    backgroundColor: "#e5e5e5",
   },
 };
