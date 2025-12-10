@@ -37,23 +37,7 @@ const StarIcon = ({ filled, half }: { filled: boolean; half?: boolean }) => (
   </svg>
 );
 
-const RatingStars = ({ rating }: { rating: number }) => {
-  const stars = [];
-  const fullStars = Math.floor(rating);
-  const hasHalfStar = rating % 1 >= 0.5;
-
-  for (let i = 0; i < 5; i++) {
-    if (i < fullStars) {
-      stars.push(<StarIcon key={i} filled={true} />);
-    } else if (i === fullStars && hasHalfStar) {
-      stars.push(<StarIcon key={i} filled={false} half={true} />);
-    } else {
-      stars.push(<StarIcon key={i} filled={false} />);
-    }
-  }
-
-  return <div style={{ display: "flex", gap: "2px" }}>{stars}</div>;
-};
+// Show a single star icon with the numeric rating value
 
 export default function ProfileCard({
   name,
@@ -92,7 +76,10 @@ export default function ProfileCard({
           </div>
           <div style={styles.statRow}>
             <span style={styles.statLabel}>Rating</span>
-            <RatingStars rating={rating} />
+            <div style={styles.ratingValue}>
+              <StarIcon filled={true} />
+              <span>{rating}</span>
+            </div>
           </div>
         </div>
 
@@ -180,6 +167,14 @@ const styles: { [key: string]: React.CSSProperties } = {
   statValue: {
     fontSize: "16px",
     fontWeight: 600,
+    color: "#1a1a1a",
+  },
+  ratingValue: {
+    display: "flex",
+    alignItems: "center",
+    gap: "6px",
+    fontSize: "16px",
+    fontWeight: 700,
     color: "#1a1a1a",
   },
   buttons: {
