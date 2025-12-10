@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 
 interface CompactProfileCardProps {
   name: string;
@@ -35,46 +35,86 @@ export default function CompactProfileCard({
   rating,
 }: CompactProfileCardProps) {
   return (
-    <motion.div style={styles.card} layoutId="card">
-      <div style={styles.header}>
-        <motion.div style={styles.imageWrapper} layoutId="imageContainer">
-          <motion.img src={imageUrl} alt={name} style={styles.image} layoutId="image" />
-        </motion.div>
-        <div style={styles.headerInfo}>
-          <motion.h2 style={styles.name} layoutId="name">{name}</motion.h2>
-          <motion.p style={styles.roleLocation} layoutId="roleLocation">
-            {role} • {location}
-          </motion.p>
-        </div>
-      </div>
+    <AnimatePresence>
+      <motion.div style={styles.card} layoutId="card">
+        <div style={styles.header}>
+          <motion.div style={styles.imageWrapper} layoutId="imageContainer">
+            <motion.img
+              src={imageUrl}
+              alt={name}
+              style={styles.image}
+              layoutId="image"
+            />
+          </motion.div>
 
-      <motion.p style={styles.bio} layoutId="bio">{bio}</motion.p>
-
-      <div style={styles.stats}>
-        <div style={styles.statItem}>
-          <span style={styles.statLabel}>Projects</span>
-          <motion.span style={styles.statValue} layoutId="projectsValue">{projects}</motion.span>
-        </div>
-        <div style={styles.divider} />
-        <div style={styles.statItem}>
-          <span style={styles.statLabel}>Earnings</span>
-          <motion.span style={styles.statValue} layoutId="earningsValue">{earnings}</motion.span>
-        </div>
-        <div style={styles.divider} />
-        <div style={styles.statItem}>
-          <span style={styles.statLabel}>Rating</span>
-          <motion.div style={styles.ratingValue} layoutId="ratingValue">
-            <StarIcon filled={true} />
-            <span>{rating}</span>
+          <motion.div style={styles.headerInfo} layoutId="headerInfo">
+            <motion.h2 style={styles.name} layoutId="name">
+              {name}
+            </motion.h2>
+            <motion.p style={styles.roleLocation} layoutId="roleLocation">
+              {role} • {location}
+            </motion.p>
           </motion.div>
         </div>
-      </div>
 
-      <motion.div style={styles.buttons} layoutId="buttons">
-        <motion.button style={styles.hireButton} layoutId="hireButton">Hire now</motion.button>
-        <motion.button style={styles.messageButton} layoutId="messageButton">Message</motion.button>
+        <motion.p style={styles.bio} layoutId="bio">
+          {bio}
+        </motion.p>
+
+        <div style={styles.stats}>
+          <motion.div style={styles.statItem} layoutId="projectsContainer">
+            <motion.span style={styles.statLabel} layoutId="projectsLabel">
+              Projects
+            </motion.span>
+            <motion.span style={styles.statValue} layoutId="projectsValue">
+              {projects}
+            </motion.span>
+          </motion.div>
+
+          <motion.div
+            style={styles.divider}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          />
+
+          <motion.div style={styles.statItem} layoutId="earningsContainer">
+            <motion.span style={styles.statLabel} layoutId="earningsLabel">
+              Earnings
+            </motion.span>
+            <motion.span style={styles.statValue} layoutId="earningsValue">
+              {earnings}
+            </motion.span>
+          </motion.div>
+
+          <motion.div
+            style={styles.divider}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          />
+
+          <motion.div style={styles.statItem} layoutId="ratingContainer">
+            <motion.span style={styles.statLabel} layoutId="ratingLabel">
+              Rating
+            </motion.span>
+            <motion.div style={styles.ratingValue} layoutId="ratingValue">
+              <StarIcon filled={true} />
+              <span>{rating}</span>
+            </motion.div>
+          </motion.div>
+        </div>
+
+        <div style={styles.buttons}>
+          <motion.button style={styles.hireButton} layoutId="hireButton">
+            Hire now
+          </motion.button>
+          <motion.button style={styles.messageButton} layoutId="messageButton">
+            Message
+          </motion.button>
+        </div>
       </motion.div>
-    </motion.div>
+    </AnimatePresence>
   );
 }
 

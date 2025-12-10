@@ -63,13 +63,14 @@ export default function ProfileCard({
       </motion.div>
 
       <div style={styles.content}>
-        <motion.h2 style={styles.name} layoutId="name">
-          {name}
-        </motion.h2>
+        <motion.div style={styles.headerInfo} layoutId="headerInfo">
+          <motion.h2 style={styles.name} layoutId="name">
+            {name}
+          </motion.h2>
 
-        <motion.div style={styles.roleLocation} layoutId="roleLocation">
-          <span style={styles.role}>{role}</span>
-          <span style={styles.location}>{location}</span>
+          <motion.p style={styles.roleLocation} layoutId="roleLocation">
+            {role} • {location}
+          </motion.p>
         </motion.div>
 
         <motion.p style={styles.bio} layoutId="bio">
@@ -77,35 +78,43 @@ export default function ProfileCard({
         </motion.p>
 
         <div style={styles.stats}>
-          <div style={styles.statRow}>
-            <span style={styles.statLabel}>Projects</span>
+          <motion.div style={styles.statRow} layoutId="projectsContainer">
+            <motion.span style={styles.statLabel} layoutId="projectsLabel">
+              Projects
+            </motion.span>
             <motion.span style={styles.statValue} layoutId="projectsValue">
               {projects}
             </motion.span>
-          </div>
-          <div style={styles.statRow}>
-            <span style={styles.statLabel}>Earnings</span>
+          </motion.div>
+
+          <motion.div style={styles.statRow} layoutId="earningsContainer">
+            <motion.span style={styles.statLabel} layoutId="earningsLabel">
+              Earnings
+            </motion.span>
             <motion.span style={styles.statValue} layoutId="earningsValue">
               {earnings}
             </motion.span>
-          </div>
-          <div style={styles.statRow}>
-            <span style={styles.statLabel}>Rating</span>
+          </motion.div>
+
+          <motion.div style={styles.statRow} layoutId="ratingContainer">
+            <motion.span style={styles.statLabel} layoutId="ratingLabel">
+              Rating
+            </motion.span>
             <motion.div style={styles.ratingValue} layoutId="ratingValue">
               <StarIcon filled={true} />
               <span>{rating}</span>
             </motion.div>
-          </div>
+          </motion.div>
         </div>
 
-        <motion.div style={styles.buttons} layoutId="buttons">
+        <div style={styles.buttons}>
           <motion.button style={styles.hireButton} layoutId="hireButton">
             Hire now
           </motion.button>
           <motion.button style={styles.messageButton} layoutId="messageButton">
             Message
           </motion.button>
-        </motion.div>
+        </div>
       </div>
     </motion.div>
   );
@@ -142,7 +151,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     fontSize: "28px",
     fontWeight: 700,
     color: "#1a1a1a",
-    margin: "0 0 8px 0",
+    margin: 0,
     textAlign: "center",
   },
   roleLocation: {
@@ -150,6 +159,15 @@ const styles: { [key: string]: React.CSSProperties } = {
     justifyContent: "center",
     gap: "12px",
     marginBottom: "16px",
+    fontSize: "15px",
+    color: "#4a4a4a",
+    fontWeight: 400,
+  },
+  headerInfo: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    gap: "2px",
   },
   role: {
     fontSize: "15px",
