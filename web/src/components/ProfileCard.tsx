@@ -1,3 +1,5 @@
+import { motion } from "motion/react";
+
 interface ProfileCardProps {
   name: string;
   role: string;
@@ -50,45 +52,62 @@ export default function ProfileCard({
   rating,
 }: ProfileCardProps) {
   return (
-    <div style={styles.card}>
-      <div style={styles.imageContainer}>
-        <img src={imageUrl} alt={name} style={styles.image} />
-      </div>
+    <motion.div style={styles.card} layoutId="card">
+      <motion.div style={styles.imageContainer} layoutId="imageContainer">
+        <motion.img
+          src={imageUrl}
+          alt={name}
+          style={styles.image}
+          layoutId="image"
+        />
+      </motion.div>
 
       <div style={styles.content}>
-        <h2 style={styles.name}>{name}</h2>
+        <motion.h2 style={styles.name} layoutId="name">
+          {name}
+        </motion.h2>
 
-        <div style={styles.roleLocation}>
+        <motion.div style={styles.roleLocation} layoutId="roleLocation">
           <span style={styles.role}>{role}</span>
           <span style={styles.location}>{location}</span>
-        </div>
+        </motion.div>
 
-        <p style={styles.bio}>{bio}</p>
+        <motion.p style={styles.bio} layoutId="bio">
+          {bio}
+        </motion.p>
 
         <div style={styles.stats}>
           <div style={styles.statRow}>
             <span style={styles.statLabel}>Projects</span>
-            <span style={styles.statValue}>{projects}</span>
+            <motion.span style={styles.statValue} layoutId="projectsValue">
+              {projects}
+            </motion.span>
           </div>
           <div style={styles.statRow}>
             <span style={styles.statLabel}>Earnings</span>
-            <span style={styles.statValue}>{earnings}</span>
+            <motion.span style={styles.statValue} layoutId="earningsValue">
+              {earnings}
+            </motion.span>
           </div>
           <div style={styles.statRow}>
             <span style={styles.statLabel}>Rating</span>
-            <div style={styles.ratingValue}>
+            <motion.div style={styles.ratingValue} layoutId="ratingValue">
               <StarIcon filled={true} />
               <span>{rating}</span>
-            </div>
+            </motion.div>
           </div>
         </div>
 
-        <div style={styles.buttons}>
-          <button style={styles.hireButton}>Hire now</button>
-          <button style={styles.messageButton}>Message</button>
-        </div>
+        <motion.div style={styles.buttons} layoutId="buttons">
+          <motion.button style={styles.hireButton} layoutId="hireButton">
+            Hire now
+          </motion.button>
+          <motion.button style={styles.messageButton} layoutId="messageButton">
+            Message
+          </motion.button>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

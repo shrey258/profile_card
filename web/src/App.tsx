@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProfileCard from "./components/ProfileCard";
 import CompactProfileCard from "./components/CompactProfileCard";
 
@@ -7,6 +7,16 @@ import { AnimatePresence } from "motion/react";
 
 function App() {
   const [expanded, setExpanded] = useState(false);
+
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && expanded) {
+        setExpanded(false);
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [expanded]);
 
   return (
     <div

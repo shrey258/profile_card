@@ -1,3 +1,5 @@
+import { motion } from "motion/react";
+
 interface CompactProfileCardProps {
   name: string;
   role: string;
@@ -33,44 +35,46 @@ export default function CompactProfileCard({
   rating,
 }: CompactProfileCardProps) {
   return (
-    <div style={styles.card}>
+    <motion.div style={styles.card} layoutId="card">
       <div style={styles.header}>
-        <img src={imageUrl} alt={name} style={styles.image} />
+        <motion.div style={styles.imageWrapper} layoutId="imageContainer">
+          <motion.img src={imageUrl} alt={name} style={styles.image} layoutId="image" />
+        </motion.div>
         <div style={styles.headerInfo}>
-          <h2 style={styles.name}>{name}</h2>
-          <p style={styles.roleLocation}>
+          <motion.h2 style={styles.name} layoutId="name">{name}</motion.h2>
+          <motion.p style={styles.roleLocation} layoutId="roleLocation">
             {role} • {location}
-          </p>
+          </motion.p>
         </div>
       </div>
 
-      <p style={styles.bio}>{bio}</p>
+      <motion.p style={styles.bio} layoutId="bio">{bio}</motion.p>
 
       <div style={styles.stats}>
         <div style={styles.statItem}>
           <span style={styles.statLabel}>Projects</span>
-          <span style={styles.statValue}>{projects}</span>
+          <motion.span style={styles.statValue} layoutId="projectsValue">{projects}</motion.span>
         </div>
         <div style={styles.divider} />
         <div style={styles.statItem}>
           <span style={styles.statLabel}>Earnings</span>
-          <span style={styles.statValue}>{earnings}</span>
+          <motion.span style={styles.statValue} layoutId="earningsValue">{earnings}</motion.span>
         </div>
         <div style={styles.divider} />
         <div style={styles.statItem}>
           <span style={styles.statLabel}>Rating</span>
-          <div style={styles.ratingValue}>
+          <motion.div style={styles.ratingValue} layoutId="ratingValue">
             <StarIcon filled={true} />
             <span>{rating}</span>
-          </div>
+          </motion.div>
         </div>
       </div>
 
-      <div style={styles.buttons}>
-        <button style={styles.hireButton}>Hire now</button>
-        <button style={styles.messageButton}>Message</button>
-      </div>
-    </div>
+      <motion.div style={styles.buttons} layoutId="buttons">
+        <motion.button style={styles.hireButton} layoutId="hireButton">Hire now</motion.button>
+        <motion.button style={styles.messageButton} layoutId="messageButton">Message</motion.button>
+      </motion.div>
+    </motion.div>
   );
 }
 
@@ -92,6 +96,11 @@ const styles: { [key: string]: React.CSSProperties } = {
     alignItems: "center",
     gap: "16px",
     marginBottom: "20px",
+  },
+  imageWrapper: {
+    width: "64px",
+    height: "64px",
+    display: "flex",
   },
   image: {
     width: "64px",
