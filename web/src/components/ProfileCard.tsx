@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import ActionButton from "./ui/ActionButton";
 
 interface ProfileCardProps {
   name: string;
@@ -108,12 +109,8 @@ export default function ProfileCard({
         </div>
 
         <div style={styles.buttons}>
-          <motion.button style={styles.hireButton} layoutId="hireButton">
-            Hire now
-          </motion.button>
-          <motion.button style={styles.messageButton} layoutId="messageButton">
-            Message
-          </motion.button>
+          <ActionButton label="Hire now" variant="primary" layoutId="hireButton" style={{ width: "100%" }} />
+          <ActionButton label="Message" variant="secondary" layoutId="messageButton" style={{ width: "100%" }} />
         </div>
       </div>
     </motion.div>

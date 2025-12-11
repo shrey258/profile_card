@@ -1,4 +1,5 @@
 import { motion, AnimatePresence } from "motion/react";
+import ActionButton from "./ui/ActionButton";
 
 interface CompactProfileCardProps {
   name: string;
@@ -106,12 +107,8 @@ export default function CompactProfileCard({
         </div>
 
         <div style={styles.buttons}>
-          <motion.button style={styles.hireButton} layoutId="hireButton">
-            Hire now
-          </motion.button>
-          <motion.button style={styles.messageButton} layoutId="messageButton">
-            Message
-          </motion.button>
+          <ActionButton label="Hire now" variant="primary" layoutId="hireButton" style={{ flex: 1 }} />
+          <ActionButton label="Message" variant="secondary" layoutId="messageButton" style={{ flex: 1 }} />
         </div>
       </motion.div>
     </AnimatePresence>
