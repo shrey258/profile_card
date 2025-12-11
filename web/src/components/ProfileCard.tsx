@@ -1,11 +1,11 @@
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import ActionButton from "./ui/ActionButton";
 
 interface ProfileCardProps {
   name: string;
   role: string;
   location: string;
-  bio: string;
+  bio: React.ReactNode;
   imageUrl: string;
   projects: number;
   earnings: string;
@@ -53,6 +53,7 @@ export default function ProfileCard({
   rating,
 }: ProfileCardProps) {
   return (
+    <AnimatePresence>
     <motion.div style={styles.card} layoutId="card">
       <motion.div style={styles.imageContainer} layoutId="imageContainer">
         <motion.img
@@ -114,6 +115,7 @@ export default function ProfileCard({
         </div>
       </div>
     </motion.div>
+    </AnimatePresence>
   );
 }
 

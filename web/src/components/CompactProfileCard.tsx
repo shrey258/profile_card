@@ -5,7 +5,7 @@ interface CompactProfileCardProps {
   name: string;
   role: string;
   location: string;
-  bio: string;
+  bio: React.ReactNode;
   imageUrl: string;
   projects: number;
   earnings: string;

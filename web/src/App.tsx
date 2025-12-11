@@ -35,26 +35,34 @@ function App() {
         {expanded ? (
           <div onClick={(e) => e.stopPropagation()}>
             <ProfileCard
-              name="Natasha Romanoff"
-              role="Brand Designer"
-              location="London"
-              bio="I'm a brand designer who blends sharp strategy with bold creativity to craft identities that leave lasting impressions. With a keen eye for detail and a knack for storytelling"
-              imageUrl="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop"
-              projects={50}
-              earnings="$35k+"
+              name="Shreyansh Gupta"
+              role="Software Engineer"
+              location="India"
+              bio={
+                <>
+                  High-agency mobile design engineer looking for <strong>new roles</strong>, preferably ones brave enough to handle someone who ships faster than their roadmap can blink.
+                </>
+              }
+              imageUrl="https://avatars.githubusercontent.com/u/91644557?v=4"
+              projects={72}
+              earnings="$36k+"
               rating={4.5}
             />
           </div>
         ) : (
           <div style={{ cursor: "pointer" }} onClick={() => setExpanded(true)}>
             <CompactProfileCard
-              name="Natasha Romanoff"
-              role="Brand Designer"
-              location="London"
-              bio="I'm a brand designer who blends sharp strategy with bold creativity to craft identities that leave lasting impressions."
-              imageUrl="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop"
-              projects={50}
-              earnings="$35k+"
+              name="Shreyansh Gupta"
+              role="Software Engineer"
+              location="India"
+              bio={
+                <>
+                  High-agency mobile design engineer looking for <strong>new roles</strong>, preferably ones brave enough to handle someone who ships faster than their roadmap can blink.
+                </>
+              }
+              imageUrl="https://avatars.githubusercontent.com/u/91644557?v=4"
+              projects={72}
+              earnings="$36k+"
               rating={4.5}
             />
           </div>
